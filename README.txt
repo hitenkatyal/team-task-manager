@@ -1,5 +1,5 @@
 App Name: TeamFlow - Team Task Manager
-Live URL: https://YOUR-RAILWAY-URL.up.railway.app
+Live URL: https://team-task-manager-production-5f56.up.railway.app
 GitHub: https://github.com/hitenkatyal/team-task-manager
 
 Features:
