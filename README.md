@@ -13,10 +13,11 @@ A full-stack team task management application built with React, Express, and Lib
 
 ## Tech Stack
 
-- **Frontend**: React + Vite
-- **Backend**: Node.js + Express
-- **Database**: LibSQL (SQLite-compatible)
-- **Authentication**: JWT
+- **Frontend**: React 18, React Router, Vite
+- **Backend**: Node.js, Express.js
+- **Database**: SQLite (@libsql/client)
+- **Auth**: JWT + bcrypt
+- **Deployment**: Railway
 
 ## Getting Started
 
