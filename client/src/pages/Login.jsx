@@ -2,9 +2,10 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.jsx';
 
-export default function Login() {
+export default function Login({ theme, toggleTheme }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
@@ -29,7 +30,12 @@ export default function Login() {
   return (
     <div className="auth-page">
       <div className="auth-card">
-        <h1>Log in</h1>
+        <div className="auth-card-header">
+          <h1>Log in</h1>
+          <button type="button" className="theme-toggle" onClick={toggleTheme}>
+            {theme === 'light' ? 'Dark mode' : 'Light mode'}
+          </button>
+        </div>
         <p>Use any email and password to continue.</p>
         <form onSubmit={handleSubmit} className="auth-form">
           <label>
@@ -44,13 +50,22 @@ export default function Login() {
           </label>
           <label>
             Password
-            <input
-              type="password"
-              placeholder="Enter your password"
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-              required
-            />
+            <div className="password-field">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                placeholder="Enter your password"
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+                required
+              />
+              <button
+                type="button"
+                className="password-toggle"
+                onClick={() => setShowPassword((prev) => !prev)}
+              >
+                {showPassword ? 'Hide' : 'Show'}
+              </button>
+            </div>
           </label>
           {error && <p className="error-message">{error}</p>}
           <button type="submit" disabled={loading}>

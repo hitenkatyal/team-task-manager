@@ -1,7 +1,7 @@
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.jsx';
 
-export default function Layout() {
+export default function Layout({ theme, toggleTheme }) {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
 
@@ -22,6 +22,9 @@ export default function Layout() {
           <Link to="/projects">Projects</Link>
           <Link to="/tasks">Tasks</Link>
           <Link to="/users">Users</Link>
+          <button type="button" className="link-button theme-toggle" onClick={toggleTheme}>
+            {theme === 'light' ? 'Dark mode' : 'Light mode'}
+          </button>
           <button type="button" className="link-button" onClick={handleLogout}>
             Log out
           </button>

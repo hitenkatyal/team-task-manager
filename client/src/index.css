@@ -3,6 +3,39 @@
   font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   background: #eff2f7;
   color: #1f2937;
+  --bg: #eff2f7;
+  --surface: #ffffff;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --border: #d1d5db;
+  --shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+  --sidebar-bg: #1f2937;
+  --sidebar-text: #f8fafc;
+  --nav-bg: #334155;
+  --button-bg: #2563eb;
+  --button-text: #ffffff;
+  --input-bg: #f8fafc;
+  --input-border: #d1d5db;
+  --card-bg: #ffffff;
+  --panel-bg: #ffffff;
+}
+
+[data-theme='dark'] {
+  --bg: #0f172a;
+  --surface: #111827;
+  --text: #f8fafc;
+  --muted: #94a3b8;
+  --border: #334155;
+  --shadow: 0 12px 30px rgba(0, 0, 0, 0.55);
+  --sidebar-bg: #0f172a;
+  --sidebar-text: #f8fafc;
+  --nav-bg: #1e293b;
+  --button-bg: #2563eb;
+  --button-text: #ffffff;
+  --input-bg: #1e293b;
+  --input-border: #334155;
+  --card-bg: #111827;
+  --panel-bg: #1b2435;
 }
 
 * {
@@ -12,14 +45,15 @@
 body {
   margin: 0;
   min-height: 100vh;
-  background: #e4e9f2;
+  background: var(--bg);
+  color: var(--text);
 }
 
 button,
 input,
 textarea {
   font: inherit;
-  color: #1f2937;
+  color: var(--text);
 }
 
 a {
@@ -61,14 +95,22 @@ a {
   align-items: center;
   padding: 0.75rem 1rem;
   border-radius: 0.75rem;
-  background: #334155;
-  color: #f8fafc;
+  background: var(--nav-bg);
+  color: var(--sidebar-text);
   border: none;
   cursor: pointer;
 }
 
 .link-button {
   width: fit-content;
+}
+
+.theme-toggle {
+  margin-left: auto;
+  justify-self: flex-end;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
 }
 
 .content {
@@ -87,12 +129,20 @@ a {
   width: 100%;
   padding: 2rem;
   border-radius: 1rem;
-  background: #ffffff;
-  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+  background: var(--card-bg);
+  box-shadow: var(--shadow);
 }
 
 .auth-card h1 {
-  margin: 0 0 1rem 0;
+  margin: 0;
+}
+
+.auth-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
 .auth-form,
@@ -114,24 +164,40 @@ a {
   width: 100%;
   padding: 0.85rem 1rem;
   border-radius: 0.75rem;
-  border: 1px solid #d1d5db;
-  background: #f8fafc;
-  color: #1f2937;
-  caret-color: #1f2937;
+  border: 1px solid var(--input-border);
+  background: var(--input-bg);
+  color: var(--text);
+  caret-color: var(--text);
 }
 
 .auth-form input::placeholder,
 .task-form input::placeholder,
 .task-form textarea::placeholder {
-  color: #6b7280;
+  color: var(--muted);
 }
 
 .auth-form input:-webkit-autofill,
 .auth-form input:-webkit-autofill:hover,
 .auth-form input:-webkit-autofill:focus,
 .auth-form input:-webkit-autofill:active {
-  -webkit-text-fill-color: #1f2937 !important;
-  box-shadow: 0 0 0px 1000px #f8fafc inset !important;
+  -webkit-text-fill-color: var(--text) !important;
+  box-shadow: 0 0 0px 1000px var(--input-bg) inset !important;
+}
+
+.password-field {
+  position: relative;
+}
+
+.password-toggle {
+  position: absolute;
+  top: 50%;
+  right: 0.85rem;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-weight: 700;
+  cursor: pointer;
 }
 
 .auth-form button,

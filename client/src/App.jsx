@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext.jsx';
 import Layout from './components/Layout.jsx';
@@ -15,17 +16,30 @@ function ProtectedRoute({ children }) {
 }
 
 export default function App() {
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem('ttm_theme') || 'light';
+  });
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    localStorage.setItem('ttm_theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
+  };
+
   return (
     <AuthProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login theme={theme} toggleTheme={toggleTheme} />} />
+          <Route path="/register" element={<Register theme={theme} toggleTheme={toggleTheme} />} />
           <Route
             path="/*"
             element={
               <ProtectedRoute>
-                <Layout />
+                <Layout theme={theme} toggleTheme={toggleTheme} />
               </ProtectedRoute>
             }
           >
