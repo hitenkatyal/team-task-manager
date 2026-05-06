@@ -11,3 +11,10 @@ Features:
 - Dashboard with stats (total, overdue, done)
 - REST API with SQLite database
 - Deployed on Railway
+
+Tech Stack:
+- Backend: Node.js, Express.js
+- Database: SQLite (@libsql/client)
+- Frontend: React 18, React Router
+- Auth: JWT + bcrypt
+- Deployment: Railway
